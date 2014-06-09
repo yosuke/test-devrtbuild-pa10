@@ -51,22 +51,11 @@
       <property name="springDamperModel" value="false"/>
       <property name="staticFriction" value="0.5"/>
     </item>
-    <item class="com.generalrobotix.ui.item.GrxCollisionPairItem" name="CP#pa10_HAND_L#box_" select="true">
+    <item class="com.generalrobotix.ui.item.GrxCollisionPairItem" name="CP#pa10_#box_" select="true">
       <property name="springConstant" value="0 0 0 0 0 0"/>
       <property name="slidingFriction" value="0.5"/>
       <property name="jointName2" value=""/>
-      <property name="jointName1" value="HAND_L"/>
-      <property name="damperConstant" value="0 0 0 0 0 0"/>
-      <property name="objectName2" value="box"/>
-      <property name="objectName1" value="pa10"/>
-      <property name="springDamperModel" value="false"/>
-      <property name="staticFriction" value="0.5"/>
-    </item>
-    <item class="com.generalrobotix.ui.item.GrxCollisionPairItem" name="CP#pa10_HAND_R#box_" select="true">
-      <property name="springConstant" value="0 0 0 0 0 0"/>
-      <property name="slidingFriction" value="0.5"/>
-      <property name="jointName2" value=""/>
-      <property name="jointName1" value="HAND_R"/>
+      <property name="jointName1" value=""/>
       <property name="damperConstant" value="0 0 0 0 0 0"/>
       <property name="objectName2" value="box"/>
       <property name="objectName1" value="pa10"/>
