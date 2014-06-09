@@ -73,5 +73,16 @@
       <property name="springDamperModel" value="false"/>
       <property name="staticFriction" value="0.5"/>
     </item>
+    <item class="com.generalrobotix.ui.item.GrxCollisionPairItem" name="CP#floor_#pa10_" select="true">
+      <property name="springConstant" value="0 0 0 0 0 0"/>
+      <property name="slidingFriction" value="0.5"/>
+      <property name="jointName2" value=""/>
+      <property name="jointName1" value=""/>
+      <property name="damperConstant" value="0 0 0 0 0 0"/>
+      <property name="objectName1" value="floor"/>
+      <property name="objectName2" value="pa10"/>
+      <property name="springDamperModel" value="false"/>
+      <property name="staticFriction" value="0.5"/>
+    </item>
   </mode>
 </grxui>
