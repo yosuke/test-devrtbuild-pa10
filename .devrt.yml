@@ -1,0 +1,7 @@
+before_install:
+  - apt-get install -y libopencv-dev
+
+simulation:
+  - project: PA10Sample.xml
+    init:
+      - echo "here we start!"
