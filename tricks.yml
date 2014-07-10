@@ -5,4 +5,4 @@ tricks:
     shell_command: 'make'
 - watchdog.tricks.AutoRestartTrick:
     patterns: ['*.so', '*.xml']
-    command: ['hrpsys-simulator', 'PA10Sample.xml']
+    command: ['hrpsys-simulator', 'PA10Sample.xml', '-realtime', '-endless']

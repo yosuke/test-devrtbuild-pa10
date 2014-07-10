@@ -143,7 +143,7 @@ class PA10Controller
   // </rtc-template>
 
   // <rtc-template block="private_operation">
-  
+  int count;
   // </rtc-template>
 
 };

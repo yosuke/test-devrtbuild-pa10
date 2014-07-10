@@ -63,6 +63,8 @@ RTC::ReturnCode_t PA10Controller::onInitialize()
   // Set OutPort buffer
   addOutPort("torque", m_torqueOut);
 
+  count = 0;
+
   m_qRef.data.length(9);
   m_qRef.data[0] = 0.0;
   m_qRef.data[1] = 0.8;
@@ -83,18 +85,43 @@ RTC::ReturnCode_t PA10Controller::onInitialize()
 
 RTC::ReturnCode_t PA10Controller::onExecute(RTC::UniqueId ec_id)
 {
+  if (count > 1000)
+    m_qRef.data[1] = 0.8;
+  else
+    m_qRef.data[1] = 0.0;
+  count++;
+  if (count > 2000) count = 0;
+
   if (m_anglesIn.isNew()) m_anglesIn.read();
   if (m_velsIn.isNew()) m_velsIn.read();
   if (!m_angles.data.length()) return RTC::RTC_OK;
 
-#define P 800.0
-#define D -100.0
-#define MaxTau 200.0
+  // initial
+  // #define K_P 100.0
+  // #define K_D -100.0
+
+  // strong K_P
+  // #define K_P 8000.0
+  // #define K_D -100.0
+
+  // optimal P
+  // #define K_P 3000.0
+  // #define K_D -100.0
+
+  // initial P
+  // #define K_P 3000.0
+  // #define K_D -800.0
+
+  // optimal PD
+  #define K_P 4000.0
+  #define K_D -800.0
+
+#define MaxTau 400.0
   for (size_t i = 0; i < m_qRef.data.length(); i++){
-    double t = P*(m_qRef.data[i] - m_angles.data[i])+D*m_vels.data[i];
-    t = std::min( MaxTau, t);
-    t = std::max(-MaxTau, t);
-    m_torque.data[i] = t;
+    double u = K_P * (m_qRef.data[i] - m_angles.data[i]) + K_D * m_vels.data[i];
+    u = std::min( MaxTau, u);
+    u = std::max(-MaxTau, u);
+    m_torque.data[i] = u;
   }
 
   m_torqueOut.write(); 
@@ -108,7 +135,6 @@ extern "C"
   void PA10ControllerInit(RTC::Manager* manager)
   {
     RTC::Properties profile(controller_spec);
-    printf("PA10ControllerInit called");
     manager->registerFactory(profile,
                              RTC::Create<PA10Controller>,
                              RTC::Delete<PA10Controller>);
