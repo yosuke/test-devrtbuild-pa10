@@ -1,4 +1,4 @@
 #!/bin/sh
 
-xterm -e watchmedo tricks tricks.yml &
+xterm -e watchmedo tricks-from tricks.yml &
 
